@@ -1,0 +1,52 @@
+<!-- WZIUM, what're you looking for? -->
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>klapchat</title>
+        <link rel="icon" type="image/png" href="favicon.ico">
+        <style>
+            #message {
+                position: absolute;
+                bottom: 2px;
+            }
+            
+            .status-r { color: red }
+            .status-g { color: green }
+
+            .username {
+                color: green;
+                text-decoration: underline;
+                display: inline;
+            }
+
+            #messages {
+                line-height: 0%;
+            }
+        </style>
+        <script src="/static/script.js"></script>
+    </head>
+    <body>
+        <select id="rooms">
+            <option disabled selected value>select some room</option>
+            <option onclick="joinRoom()" value="joinRoom">join room</option>
+            <option onclick="createRoom()" value="createRoom">create room</option>
+        </select>
+
+        <button onclick="connectRoom()">connect room</button>
+        <button onclick="disconnectRoom()">disconnect room</button>
+        <button onclick="deleteRoom()">delete room</button>
+        <button onclick="leaveRoom()">leave room</button>
+        <button onclick="copyId()">copy room id</button>
+
+        <p id="error" class="status-r"></p>
+
+        <div id="messages">
+            <!-- <p><p class="username">rtweaf</p> o/</p> -->
+        </div>
+
+        <div id="message">
+            <input id="message-content" placeholder="Message..." disabled>
+            <button id="message-push" onclick="pushMessage()" disabled>push</button>
+        </div>
+    </body>
+</html>

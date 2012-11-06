@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>klapchat</title>
+        <link rel="icon" type="image/png" href="favicon.ico">
+        <style>
+            #error { color: red }
+        </style>
+    </head>
+    <body>
+        <h1>klapchat</h1>
+        <p>if you want to create an account, public post on <a href="https://discord.gg/">my discord server</a></p>
+        <form method="POST">
+            <div>
+                <input name="username" id="username" placeholder="username">
+            </div>
+            <div>
+                <input name="password" id="password" placeholder="password" type="password">
+            </div>
+            <div>
+                <button>submit</button>
+            </div>
+        </form>
+
+        <p id="error"></p>
+
+        <script>
+            if (
+                document.cookie
+                    .split('; ')
+                    .find((row) => row.startsWith(name))
+                    ?.split('=')[1]
+            ) {
+                document.getElementById('error').innerText = 'Invalid data';
+            }
+        </script>
+    </body>
+</html>
