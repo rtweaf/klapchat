@@ -14,5 +14,6 @@ $ uvicorn main:app --reload
 * [ ] `changeUsername`, `changeRoomname`
 * [ ] Sending images
 * [ ] Audio rooms
+* [ ] Session expiration time and logout button
 
 thx for help [@sbdswr](https://github.com/sbdswr/)
