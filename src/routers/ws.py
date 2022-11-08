@@ -236,12 +236,10 @@ async def ws_endpoint(ws: WebSocket):
 
                 if d is not None:
                     await ws.send_json(d)
-            except ZeroDivisionError:
-                pass
-            #except KeyError as ex:
-                #return await ws.close(4400, f'Missing argument {ex}')
-            #except ValueError:
-                #return await ws.close(4400, 'Invalid data type for the argument')
+            except KeyError as ex:
+                return await ws.close(4400, f'Missing argument {ex}')
+            except ValueError:
+                return await ws.close(4400, 'Invalid data type for the argument')
     except WebSocketDisconnect:
         return
     except RuntimeError:

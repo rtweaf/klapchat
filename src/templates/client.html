@@ -9,6 +9,11 @@
                 position: absolute;
                 bottom: 2px;
             }
+
+            #logout {
+                position: absolute;
+                right: 8px;
+            }
             
             .status-r { color: red }
             .status-g { color: green }
@@ -37,6 +42,8 @@
         <button onclick="deleteRoom()">delete room</button>
         <button onclick="leaveRoom()">leave room</button>
         <button onclick="copyId()">copy room id</button>
+        
+        <button id="logout" onclick="logOut()">logout</button>
 
         <p id="error" class="status-r"></p>
 

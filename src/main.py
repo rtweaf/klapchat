@@ -1,8 +1,9 @@
 import uuid
 import sqlite3
 import crypt
+import datetime as dt
 
-from fastapi import FastAPI, Request, Form, Cookie
+from fastapi import FastAPI, Request, Form, Cookie, Response
 from fastapi.responses import RedirectResponse, FileResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
@@ -42,10 +43,7 @@ async def home(req: Request):
 
 
 @app.get('/login')
-async def login(req: Request, session_id: str = Cookie(None)):
-    if session_id in sessions:
-        return RedirectResponse('/client', 302)
-
+def login(req: Request):
     return templates.TemplateResponse('login.html', {'request': req})
 
 
@@ -61,12 +59,20 @@ async def login(username: str = Form(), password: str = Form()):
 
     session_id = str(uuid.uuid4())
     sessions[session_id] = {'username': username, 'id': fetch[0][1]}
-    
+
     res = RedirectResponse('/client', 302)
-    res.set_cookie('session_id', session_id)
+    res.set_cookie('session_id', session_id,
+                    expires=(dt.datetime.utcnow() + dt.timedelta(days=7)).
+                    strftime('%a, %d %b %Y %H:%M:%S GMT'))
     
     return res
- 
+
+
+@app.get('/logout')
+async def logout(_: Request, session_id = Cookie(None)):
+    if session_id in sessions:
+        del sessions[session_id]
+
 
 @app.get('/client')
 async def client(req: Request, session_id = Cookie(None)):

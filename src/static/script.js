@@ -1,4 +1,4 @@
-const ws = new WebSocket('ws://localhost:8000/ws');
+const ws = new WebSocket(`ws://${location.host}/ws`);
 
 const cached_data = {
     'currRoom': '',
@@ -40,6 +40,7 @@ ws.onmessage = (ev) => {
 
         case 'youare':
             cached_data.myUsername = d.username;
+            document.getElementById('logout').innerText = `${cached_data.myUsername} | logout`
             break;
 
         case 'rooms':
@@ -158,6 +159,12 @@ copyId = () => {
             document.getElementById('error').innerText = 'plz allow clipboard perms';
         }
     );
+};
+
+logOut = () => {
+    fetch('/logout').then(_ => {
+        window.location.href = '/login';
+    });
 };
 
 pushMessage = () => {
