@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block body %}
+    <h1>Register</h1>    
+    <form method="post">
+        {% csrf_token %}
+        {{ form.non_field_errors.0 }}
+        {% for field in form %}
+            <h3>{{ field.label_tag }}</h3>
+            {{ field }}
+            {{ field.errors }}
+        {% endfor %}
+        <hr>
+        <button type="submit">Submit</button>
+    </form>
+    <br>
+    <footer>
+        For you (and us) comfort, we don't verify captcha, email etc., so please respect it and don't make alts.
+    </footer>
+{% endblock %}

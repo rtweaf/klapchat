@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block body %}
+    <h1>Login</h1>    
+    <form method="post">
+        <input type="hidden" name="next" value="/app/" />
+        {% csrf_token %}
+        {{ form.non_field_errors.0 }}
+        {% for field in form %}
+            {% if field.field.widget.input_type == 'checkbox' %}
+                <br><br>
+                {{ field }}
+                <label for="{{ field.id }}">{{ field.label_tag }}</label>
+            {% else %}
+                <h3>{{ field.label_tag }}</h3>
+                {{ field }}
+                {{ field.errors }}
+            {% endif %}
+        {% endfor %}
+        <hr>
+        <button type="submit">Submit</button>
+    </form>
+{% endblock %}
