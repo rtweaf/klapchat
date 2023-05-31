@@ -6,7 +6,7 @@ A simple websocket chat, based on Django framework
 # install the requirements
 pip install -r requirements.txt
 
-# run database on docker
+# run database on docker (via root)
 docker run -p 6379:6379 -d redis:5
 
 # run django server

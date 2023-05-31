@@ -3,6 +3,6 @@ body {
     margin: 5%;
 }
 
-button {
+button, select, input {
     padding: .5%;
 }

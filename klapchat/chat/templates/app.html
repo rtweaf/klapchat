@@ -1,1 +1,17 @@
-ddfdsfedff
+{% extends 'base.html' %}
+{% block head %}
+    {% load static %}
+    <script defer src="{% static 'client.js' %}"></script>
+{% endblock %}
+{% block body %}
+    <select id="channels">
+        <option disabled selected hidden>Select group</option>
+    </select>
+
+    <input id="message" placeholder="Message">
+    <button id="send">send</button>
+
+    <div id="messages">
+        <p><b>b</b> a</p>
+    </div>
+{% endblock %}

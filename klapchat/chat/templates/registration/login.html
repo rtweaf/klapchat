@@ -1,6 +1,9 @@
 {% extends 'base.html' %}
 {% block body %}
-    <h1>Login</h1>    
+    <h1>Login</h1>
+    {% if user.is_authenticated %}
+        <p>You're already logged in</p>
+    {% endif %}
     <form method="post">
         <input type="hidden" name="next" value="/app/" />
         {% csrf_token %}
